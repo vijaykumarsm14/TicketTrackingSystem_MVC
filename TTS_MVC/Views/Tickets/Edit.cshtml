@@ -1,0 +1,74 @@
+﻿@model TTS_MVC.Models.Ticket
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Ticket</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Ticket_Id" />
+            <div class="form-group">
+                <label asp-for="LoggedBy" class="control-label">Logged By:</label>
+                <input asp-for="LoggedBy" class="form-control" />
+                <span asp-validation-for="LoggedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RaisedDate" class="control-label">Raised Date:</label>
+                <input asp-for="RaisedDate" class="form-control" />
+                <span asp-validation-for="RaisedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Severity" class="control-label">Severity:</label>
+                <input asp-for="Severity" class="form-control" />
+                <span asp-validation-for="Severity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket_Desc" class="control-label">Ticket Description:</label>
+                
+                <textarea asp-for="Ticket_Desc" class="form-control" multiple="30"></textarea>
+                <span asp-validation-for="Ticket_Desc" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResolvedBy" class="control-label">Resolved By:</label>
+                <input asp-for="ResolvedBy" class="form-control" />
+                <span asp-validation-for="ResolvedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Resolution" class="control-label">Resolution:</label>
+                <input asp-for="Resolution" class="form-control" />
+                <span asp-validation-for="Resolution" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResolvedDate" class="control-label">Resolved Date:</label>
+                <input asp-for="ResolvedDate" class="form-control" />
+                <span asp-validation-for="ResolvedDate" class="text-danger"></span>
+            </div>
+             <div class="form-group">
+               <label asp-for="Status" class="control-label">Status</label>
+               <select asp-for="Status" class="form-control" onchange="changecat();">
+              
+               <option asp-for="Status" class="form-control">Open</option>
+               <option asp-for="Status" class="form-control">Closed</option>
+               </select>
+               <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

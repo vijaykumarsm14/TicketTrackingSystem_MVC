@@ -1,0 +1,113 @@
+﻿
+@model TTS_MVC.Models.Ticket
+
+@{
+    ViewData["Title"] = "Create";
+}
+           <script>
+            function f1() { alert($"{Tickets.Ticket_Id}"+"Ticket raised for employee ID"); }
+            </script>
+            
+            <script>
+                function func1(){
+                    var a1  =   forms["Ticket"]["LoggedBy"];
+                    var a2  =   forms["Ticket"]["RaisedDate"];
+                    var a3  =   forms["Ticket"]["Severity"];
+                    var a4  =   forms["Ticket"]["Ticket_Desc"];
+                    var a5  =   forms["Ticket"]["Status"];
+
+                    if(a1==""){
+                        window.alert("Please enter the data");
+                        a1.focus();
+                        return false;
+                    }
+                    if(a2==""){
+                        window.alert("Please enter the data");
+                        a2.focus();
+                        return false;
+                    }
+                    if(a3==""){
+                        window.alert("Please enter the data");
+                        a3.focus();
+                        return false;
+                    }
+                    if(a4==""){
+                        window.alert("Please enter the data");
+                        a4.focus();
+                        return false;
+                    }
+                 
+                    if(a5==""){
+                        window.alert("Please enter the data");
+                        a5.focus();
+                        return false;
+                    }
+                    return true;
+                }
+            </script>
+        
+
+<h4>Raise/Log a Ticket</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" onsubmit="return func1()">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="LoggedBy" class="control-label">Logged By:</label>
+                
+                <select asp-for="LoggedBy" class="control-label" asp-items=@ViewBag.empNameList ></select>
+                <span asp-validation-for="LoggedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RaisedDate" class="control-label">Raised Date:</label>
+                <input asp-for="RaisedDate" class="form-control" />
+                <span asp-validation-for="RaisedDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Severity" class="control-label">Severity:</label>
+               <select asp-for="Severity" class="form-control" onchange="changecat();">
+               <option asp-for="Severity" class="form-control">Critical</option>
+               <option asp-for="Severity" class="form-control">Major</option>
+               <option asp-for="Severity" class="form-control">Normal</option>
+               </select>
+               <span asp-validation-for="Severity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Ticket_Desc" class="control-label">Ticket Description</label>
+                <textarea asp-for="Ticket_Desc" class="form-control" multiple="30"></textarea>
+                <span asp-validation-for="Ticket_Desc" class="text-danger"></span>
+            </div>
+            
+           
+            
+            
+            <div class="form-group">
+               <label asp-for="Status" class="control-label">Status</label>
+               <select asp-for="Status" class="form-control" onchange="changecat();">
+              
+               <option asp-for="Status" class="form-control">Open</option>
+               <option asp-for="Status" class="form-control">Closed</option>
+               </select>
+               <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" onclick="f1()" onsubmit="func1()"/><hr />
+               
+            </div>
+           
+            
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

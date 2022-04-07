@@ -1,0 +1,77 @@
+﻿@model IEnumerable<TTS_MVC.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-bordered table-st">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LoggedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RaisedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Severity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ticket_Desc)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResolvedBy)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resolution)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ResolvedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LoggedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RaisedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Severity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ticket_Desc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResolvedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resolution)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResolvedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Ticket_Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Ticket_Id">Details</a> 
+               @* <a asp-action="Delete" asp-route-id="@item.Ticket_Id">Delete</a>*@
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
